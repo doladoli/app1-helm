@@ -1,0 +1,28 @@
+name: Deploy Helm Chart (app1)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted   # 👈 IMPORTANT
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Verify tools
+        run: |
+          helm version
+          kubectl version --client
+
+      - name: Deploy app1 Helm chart
+        run: |
+          cd chart/app1
+          helm upgrade --install app1 \
+            . \
+            --namespace app1 \
+            --create-namespace
