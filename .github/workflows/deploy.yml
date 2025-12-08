@@ -20,9 +20,5 @@ jobs:
           kubectl version --client
 
       - name: Deploy app1 Helm chart
-        run: |
-          cd chart/app1
-          helm upgrade --install app1 \
-            . \
-            --namespace app1 \
-            --create-namespace
+        run: |        
+          helm upgrade --install app1 chart/app1
