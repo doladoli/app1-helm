@@ -18,6 +18,11 @@ jobs:
         run: |
           helm version
           kubectl version --client
+          
+      - name: Debug folder structure
+        run: |
+          pwd
+          ls -R    
 
       - name: Deploy app1 Helm chart
         run: |        
