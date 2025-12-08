@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/doladoli/app1
-  tag: "latest"
+  tag: "23445"
 
 service:
   port: 80
