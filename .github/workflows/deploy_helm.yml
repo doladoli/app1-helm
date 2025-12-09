@@ -26,7 +26,5 @@ jobs:
           Write-Host "Folder content: $(Get-ChildItem | ForEach-Object { $_.Name })"
 
           # Deploy Helm chart
-          helm upgrade --install app1 ./app1 \
-            --namespace default \
-            --create-namespace \
-            --values ./app1/values.yaml
+          helm upgrade --install app1 ./app1 \          
+            --values ./values.yaml
