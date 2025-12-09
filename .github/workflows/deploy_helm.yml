@@ -22,7 +22,7 @@ jobs:
       - name: Debug folder structure
         run: |
           pwd
-          ls -R    
+          echo $env:GITHUB_WORKSPACE   
 
       - name: Deploy app1 Helm chart
         run: |        
