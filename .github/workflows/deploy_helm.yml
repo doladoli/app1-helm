@@ -1,29 +1,40 @@
-name: Deploy Helm Chart (app1)
+name: Deploy Helm Chart
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: self-hosted   # 👈 IMPORTANT
-
+    runs-on: self-hosted
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Verify tools
-        run: |
-          helm version
-          kubectl version --client
-          
+      # 2. Setup Helm (if not installed on runner)
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.18.2
+	  
       - name: Debug folder structure
         run: |
-          pwd
-          echo $env:GITHUB_WORKSPACE   
-
+          pwd	
+      # 3. Deploy the chart
       - name: Deploy app1 Helm chart
-        run: |        
-          helm upgrade --install app1 chart/app1
+        shell: pwsh
+        run: |
+          # Go to the repo root
+          cd $env:GITHUB_WORKSPACE
+          
+          # Debug: list files for confirmation
+          Write-Host "Current folder: $(Get-Location)"
+          Write-Host "Folder content: $(Get-ChildItem | ForEach-Object { $_.Name })"
+
+          # Deploy Helm chart
+          helm upgrade --install app1 ./app1 \
+            --namespace default \
+            --create-namespace \
+            --values ./app1/values.yaml
