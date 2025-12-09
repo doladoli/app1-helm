@@ -26,4 +26,4 @@ jobs:
           Write-Host "Folder content: $(Get-ChildItem | ForEach-Object { $_.Name })"
 
           # Deploy Helm chart
-          helm --install appX .\ 
+          helm install app1-helm . -f .\values.yaml
