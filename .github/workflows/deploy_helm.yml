@@ -25,5 +25,6 @@ jobs:
           ls -R    
 
       - name: Deploy app1 Helm chart
-        run: |        
+        run: | 
+          cd app1-helm        
           helm upgrade --install app1 chart/app1
