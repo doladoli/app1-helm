@@ -18,10 +18,7 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.18.2
-	  
-      - name: Debug folder structure
-        run: |
-          pwd	
+
       # 3. Deploy the chart
       - name: Deploy app1 Helm chart
         shell: pwsh
