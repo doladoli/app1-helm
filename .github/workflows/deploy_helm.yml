@@ -26,4 +26,4 @@ jobs:
           Write-Host "Folder content: $(Get-ChildItem | ForEach-Object { $_.Name })"
 
           # Deploy Helm chart
-          helm upgrade --install DDappXX . -f .\values.yaml 
+          helm upgrade --install woi . -f .\values.yaml 
