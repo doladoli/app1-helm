@@ -13,15 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Helm (if not installed on runner)
-      - name: Setup Helm
-        uses: azure/setup-helm@v3
-        with:
-          version: v3.18.2
-
+     
       # 3. Deploy the chart
       - name: Deploy app1 Helm chart
-        shell: pwsh
+        shell: powershell
         run: |
           # Go to the repo root
           cd $env:GITHUB_WORKSPACE
